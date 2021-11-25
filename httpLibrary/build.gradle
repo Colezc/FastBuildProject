@@ -1,0 +1,70 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def cfg = rootProject.ext.android
+def dpc = rootProject.ext.dependencies
+android {
+    compileSdkVersion cfg.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion cfg.minSdkVersion
+        targetSdkVersion cfg.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //基础框架依赖库
+    api  dpc.androidxconstraintlayout
+    api  dpc.androidxnavigationfragment
+    api  dpc.androidxnavigationui
+    api  dpc.androidxjunit
+    api  dpc.androidxrunner
+    api  dpc.androidxespresso
+
+    api  dpc.retrofit2
+    api  dpc.retrofit2gson
+    api  dpc.retrofit2rxjava2
+    api  dpc.retrofit_adapter_kt
+    api  dpc.rxbinding_kotlin
+    api  dpc.okhttp3
+    api  dpc.iorxjava2
+    api  dpc.iorxjava2rxandroid
+    api  dpc.rxbus
+    api  dpc.lifecycleruntime
+    api  dpc.lifecycleextensions
+    api  dpc.androidxswiperefreshlayout
+//    implementation files('lib\\okhttputils.jar')
+    kapt  dpc.lifecyclecompiler
+    api  dpc.lifecyclereactivestreams
+    debugImplementation  dpc.readystatesoftwarelibrary
+    releaseImplementation  dpc.readystatesoftwarelibrarynoop
+    kapt            dpc.databindingcompiler
+    api  dpc.multidex
+    api  dpc.Glideglide
+    api  dpc.GlideCompiler
+    api  dpc.androidxmaterial
+    api  dpc.showhidepasswordedittext
+//    implementation  dpc.BaseAdapter
+    api  dpc.ImmersionBar
+}

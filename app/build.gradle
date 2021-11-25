@@ -1,0 +1,117 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+def cfg = rootProject.ext.android
+def dpc = rootProject.ext.dependencies
+android {
+    compileSdk cfg.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.coffee.swap"
+        minSdk cfg.minSdkVersion
+        targetSdk cfg.targetSdkVersion
+        versionCode cfg.versionCode
+        versionName cfg.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword 'androidbtb'
+            storeFile file("../jks/AndroidBTB.jks")
+            storePassword 'androidbtb'
+        }
+    }
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                def date = new Date().format("yyyyMMddHHmmss" , TimeZone.getTimeZone("GMT+08"))
+                if(variant.buildType.name == 'debug'){
+                    outputFileName =   "BitMineAndroid_${variant.name}_v${variant.versionName}_${date}.apk"
+                }
+                if(variant.buildType.name == 'release'){
+                    outputFileName =  "BitMineAndroid_${variant.name}_v${variant.versionName}_${date}.apk"
+                }
+            }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "SERVICE_URL", "\"${rootProject.ext.host_release}\"")
+        }
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "SERVICE_URL", "\"${rootProject.ext.host_beta}\"")
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/NOTICE.md'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures{
+        dataBinding = true
+    }
+}
+
+dependencies {
+
+    //基础框架依赖库
+    implementation  dpc.androidxconstraintlayout
+    implementation  dpc.androidxnavigationfragment
+    implementation  dpc.androidxnavigationui
+    implementation  dpc.androidxjunit
+    implementation  dpc.androidxrunner
+    implementation  dpc.androidxespresso
+
+    implementation  dpc.retrofit2
+    implementation  dpc.retrofit2gson
+    implementation  dpc.retrofit2rxjava2
+    implementation  dpc.okhttp3
+    implementation  dpc.iorxjava2
+    implementation  dpc.iorxjava2rxandroid
+    implementation  dpc.rxbus
+    implementation  dpc.lifecycleruntime
+    implementation  dpc.lifecycleextensions
+    implementation  dpc.androidxswiperefreshlayout
+//    implementation files('lib\\okhttputils.jar')
+    kapt  dpc.lifecyclecompiler
+    implementation  dpc.lifecyclereactivestreams
+    debugImplementation  dpc.readystatesoftwarelibrary
+    releaseImplementation  dpc.readystatesoftwarelibrarynoop
+    kapt            dpc.databindingcompiler
+    implementation  dpc.multidex
+    implementation  dpc.Glideglide
+    implementation  dpc.GlideCompiler
+    implementation  dpc.androidxmaterial
+    implementation  dpc.showhidepasswordedittext
+//    implementation  dpc.BaseAdapter
+    implementation  dpc.ImmersionBar
+
+
+    implementation project(':baseLibrary')
+}

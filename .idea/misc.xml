@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/BTB/BTBSwapAndroid/app/src/main/res/drawable/ic_error_imag_icon.xml" value="0.3764102564102564" />
+        <entry key="..\:/BTB/BTBSwapAndroid/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/BTB/BTBSwapAndroid/baseLibrary/src/main/res/layout/base_page_error.xml" value="0.2046875" />
+        <entry key="..\:/BTB/BTBSwapAndroid/baseLibrary/src/main/res/layout/base_page_no_data_click.xml" value="0.2046875" />
+        <entry key="..\:/BTB/BTBSwapAndroid/baseLibrary/src/main/res/layout/dialog_area_pickerview.xml" value="0.2046875" />
+        <entry key="..\:/BTB/BTBSwapAndroid/baseLibrary/src/main/res/layout/hulk_page_error.xml" value="0.2957427536231884" />
+        <entry key="..\:/BTB/BTBSwapAndroid/baseLibrary/src/main/res/layout/item_address.xml" value="0.2957427536231884" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
