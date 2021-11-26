@@ -64,11 +64,15 @@ abstract class BaseDialogFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> :
     /**
      * 刷新相关 因为单界面不存在加载，这样只针对是否开启刷新功能做处理，可设置为null，为null则不具备刷新相关能力
      */
-    abstract fun getSmartRefreshLayout(): SmartRefreshLayout?
+    protected open fun getSmartRefreshLayout(): SmartRefreshLayout? {
+        return null
+    }
 
     private var mRefreshEnable = true //是否能进行下拉刷新
 
-    abstract fun refreshData()
+    open fun refreshData() {
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -92,8 +96,15 @@ abstract class BaseDialogFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> :
         registerViewChange()
         initRefresh()
         init(savedInstanceState)
+        initViewModel()
+        load()
     }
 
+    open fun initViewModel() {
+    }
+
+    open fun load(){
+    }
 
     /***
      * view

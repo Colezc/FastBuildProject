@@ -46,7 +46,9 @@ abstract class BaseActivity<VM : BaseViewModel<*>, DB : ViewDataBinding> : AppCo
     /**
      * @return 该View 替换为显示loadingView 或者 emptyView 或者 netWorkErrorView
      */
-    abstract fun getReplaceView(): View
+    protected open fun getReplaceView(): View {
+        return View(mActivity)
+    }
 
     /**
      * 初始化
@@ -66,11 +68,15 @@ abstract class BaseActivity<VM : BaseViewModel<*>, DB : ViewDataBinding> : AppCo
     /**
      * 刷新相关 因为单界面不存在加载，这样只针对是否开启刷新功能做处理，可设置为null，为null则不具备刷新相关能力
      */
-    abstract fun getSmartRefreshLayout(): SmartRefreshLayout?
+    protected open fun getSmartRefreshLayout(): SmartRefreshLayout? {
+        return null
+    }
 
     private var mRefreshEnable = true //是否能进行下拉刷新
 
-    abstract fun refreshData()
+    open fun refreshData() {
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,6 +89,15 @@ abstract class BaseActivity<VM : BaseViewModel<*>, DB : ViewDataBinding> : AppCo
         registerViewChange()
         initRefresh()
         init(savedInstanceState)
+        initViewModel()
+        load()
+    }
+
+
+    open fun initViewModel() {
+    }
+
+    open fun load(){
     }
 
     /***

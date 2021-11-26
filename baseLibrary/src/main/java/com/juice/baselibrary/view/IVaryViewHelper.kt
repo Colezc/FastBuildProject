@@ -20,7 +20,7 @@ interface IVaryViewHelper {
      * 需替换的布局view
      * @return
      */
-    val replaceView: View
+    val replaceView: View?
 
     /**
      * 恢复view
