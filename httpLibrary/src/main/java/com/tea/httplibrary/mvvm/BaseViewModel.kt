@@ -59,10 +59,10 @@ abstract class BaseViewModel<API> : ViewModel(), LifecycleObserver {
         return apiService ?: throw RuntimeException("Api service is null")
     }
 
-    /**
-     * 开始执行方法
-     */
-    protected abstract fun onStart()
+//    /**
+//     * 开始执行方法
+//     */
+//    protected abstract fun onStart()
 
 
     /**
@@ -167,23 +167,23 @@ abstract class BaseViewModel<API> : ViewModel(), LifecycleObserver {
         coroutineScope {
             if (BaseConfig.getRetSuccess() != null) {
                 //成功
-                if (response.getCode() == BaseConfig.getRetSuccess()) {
+                if (response.getBaseCode() == BaseConfig.getRetSuccess()) {
                     //完成的回调所有弹窗消失
                     viewChange.dismissDialog.call()
                     viewChange.restore.call()
-                    success(response.getResult())
+                    success(response.getBaseResult())
                 } else {
                     //状态码错误
                     throw ReturnCodeException(
-                        response.getCode(),
-                        response.getMsg()
+                        response.getBaseCode(),
+                        response.getBaseMsg()
                     )
                 }
                 //未设置状态码
             } else {
                 throw ReturnCodeNullException(
-                    response.getCode(),
-                    response.getMsg()
+                    response.getBaseCode(),
+                    response.getBaseMsg()
                 )
             }
         }

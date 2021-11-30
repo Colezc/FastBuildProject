@@ -13,4 +13,5 @@ interface ApiService {
 
     @GET("/app/v3/user/get/slideCode")
     suspend fun getSlideCode(@Query("phone") phone: String): BaseRes<String>
+
 }

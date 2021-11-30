@@ -9,6 +9,8 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.widget.ImageView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.bumptech.glide.Glide
@@ -49,6 +51,10 @@ fun String.copy(mContext: Context): Boolean {
     // 将文本内容放到系统剪贴板里。
     cm.setPrimaryClip(clipData)
     return true
+}
+
+fun <T> MutableLiveData<T>.asLiveData(): LiveData<T> {
+    return this
 }
 
 fun showWheel(

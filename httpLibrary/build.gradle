@@ -51,6 +51,8 @@ dependencies {
     api  dpc.iorxjava2
     api  dpc.iorxjava2rxandroid
     api  dpc.rxbus
+    api  dpc.viewmodel_ktx
+    api  dpc.livedata_ktx
     api  dpc.lifecycleruntime
     api  dpc.lifecycleextensions
     api  dpc.androidxswiperefreshlayout
